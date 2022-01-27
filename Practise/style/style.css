@@ -1,0 +1,137 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.anger{
+    background: #690000;
+    font-family: Tahoma;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 0.9 em;
+    word-spacing: 3em;
+}
+
+.button{
+    background-color:#333;
+    color:#fff;
+    padding:10px 15px
+}
+
+.clr{
+    clear: both;
+}
+
+.button:hover{
+    background: red;
+    color:white;
+}
+
+a{
+    text-decoration: none;
+    color:rgb(54, 42, 26);
+}
+
+a:hover{
+    color:chartreuse;
+}/*color for hoving over a link*/
+
+a:active{
+    color:green;
+}/*color for the moment a link is clicked*/
+
+a:visited{
+    color: crimson;
+}/*based on link location*/
+
+.linksList li{
+    padding-bottom: 1px;
+    border-bottom: dotted 1px #333;
+    /*list-style-image: url('../images/che.jfif');*/
+}
+
+.my-form{
+    padding:20px;
+
+}
+
+.my-form.form-group{
+    padding-bottom: 15px;
+}
+
+.my-form label{
+    display:block;
+}
+
+.my-form input[type="text"], .my-form textarea{/*affectes any input within my-form class*/
+    padding: 8px;
+    width: 100%;
+}
+
+.block{
+    float: left;
+    width: 33.33%;
+    border:1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+#main-block{
+    float:left;
+    width:70%
+}
+
+#sidebar{
+    float:right;
+    width:30%;
+    background-color: #333;
+    color:#fff;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.p-box{
+    width: 800px;
+    height: 500px;
+    border: 1px solid #000;
+    margin-top:30px;
+    position: relative;
+    background-image: url(../images/white.jfif);
+    background-position: 100px 200px;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+.p-box h1{
+    position: absolute;
+    top:120px;
+    left: 200px;
+}
+
+.p-box h2{
+    position: absolute;
+    bottom: 40px;
+    right:100px;
+}
+
+.fix-me{
+    position: fixed;
+    top: 50%;
+}
+
+.my-list li:first-child{
+    background: red;
+}
+
+.my-list li:last-child{
+    background: blue;
+}
+
+.my-list li:nth-child(5){
+    background: purple;
+}
+
+.my-list li:nth-child(even){
+    background: grey;
+}
