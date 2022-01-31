@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid 1</title>
+    <style>
+        .wrapper {
+            display: grid;
+            /*grid-template-columns: 70% 30%; /** first column 70%, next column 30%, next 70%, next 30%, etc*/
+            grid-template-columns: 1fr 2fr; /* means fraction instead of percent*/
+            column-gap: 1em; /*One unit of font (width of a character) is placed into a gap*/
+            row-gap: 1em;
+        }
+        .wrapper>div  {/*reterns only divs that have wrapper as parent (not divs within divs)*/
+            background: #ccc;
+            padding: 10px;
+        }
+
+        .wrapper > div:nth-child(odd){
+            background: #ddd;
+        }
+
+        .box1{
+            align-items: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus veritatis autem dolorem veniam delectus nesciunt sunt molestias eligendi nemo reprehenderit beatae numquam praesentium expedita labore error perferendis porro, consectetur inventore provident! Ipsum atque at officiis dolorum dignissimos possimus reiciendis accusamus! Ea consequatur dolorem, facilis, harum laboriosam at error hic assumenda officiis sed accusamus rerum dolore. Ipsum iure nam exercitationem iste ea. Corrupti excepturi dolor in, quae voluptate tenetur perferendis dolore ipsa aliquid quo maiores modi molestias esse placeat laboriosam tempore.
+        </div>
+
+        <div class="box1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis facilis, natus at officiis necessitatibus, repellat nulla magnam similique adipisci, perspiciatis dignissimos quidem maiores consequatur itaque eius aperiam nam doloremque blanditiis!
+        </div>
+
+        <div>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Temporibus veritatis autem dolorem veniam delectus nesciunt sunt molestias eligendi nemo reprehenderit beatae numquam praesentium expedita labore error perferendis porro, consectetur inventore provident! Ipsum atque at officiis dolorum dignissimos possimus reiciendis accusamus! Ea consequatur dolorem, facilis, harum laboriosam at error hic assumenda officiis sed accusamus rerum dolore. Ipsum iure nam exercitationem iste ea. Corrupti excepturi dolor in, quae voluptate tenetur perferendis dolore ipsa aliquid quo maiores modi molestias esse placeat laboriosam tempore.
+        </div>
+
+        <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis facilis, natus at officiis necessitatibus, repellat nulla magnam similique adipisci, perspiciatis dignissimos quidem maiores consequatur itaque eius aperiam nam doloremque blanditiis!
+        </div>
+    </div>
+    
+</body>
+</html>
