@@ -5,6 +5,8 @@ body{
     background-color:  #f4f4f4;
 }
 
+/*header-Global*/
+
 header{
     background: #0668A2;
     color: #fff;
@@ -14,6 +16,7 @@ header{
     position: relative;
 }
 
+/*places the 63 logo and the nav in a grid*/
 header .container {
     width: 80%;
     margin: auto;
@@ -35,6 +38,7 @@ header a{
     font-size: 16px;
 }
 
+/*places each individual li elements in a flex*/
 header ul{
     padding: 0;
     list-style: none;
@@ -46,17 +50,24 @@ header li{
     padding: 0 20px;
 }
 
+/*depending on the page, one of the nav elements will be .current*/
 header .current a{
     color: #0BC299;
     font-weight: bold;
 }
 
+/*header end*/
+
+/*index.html*/
+
+/*showcaseBanner*/
 #showcaseBanner{
     min-height: 400px;
     color: #fff;
     text-align: center;
 }
 
+/*places an image behind the elements of #showcaseBanner*/
 #showcaseBanner .banner{
     position: absolute;
     background: #000 url('https://cdn.vox-cdn.com/thumbor/9B4o2ErxOapdmLA0CRoqC3XtMqE=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/69783022/GeorgeRussell_Getty_Ringer.0.jpg');
@@ -66,9 +77,10 @@ header .current a{
     width: 100%;
     height: 100%;
     z-index: -1;
-    /*opacity: 0.9;*/
 }
 
+/*padding-top as a % makes the text movment smooth. 
+defines text in #showcaseBanner as partially transparent*/
 #showcaseBanner .container{
     margin: 0;
     padding-top: 10%;
@@ -87,12 +99,17 @@ header .current a{
     font-size: 30px;
 }
 
+/*bio*/
+
 #bio {
     padding: 20px;
     background: #0668A2;
-    
 }
 
+/*the borders here only surround the conent of #bio .container, 
+of which has signifigant margin, 
+this creates the effect of defining lines.
+it also devides the bio text and bio photo into a grid*/
 #bio .container{
     width: 80%;
     margin: auto;
@@ -108,6 +125,7 @@ header .current a{
     color: #fff;
 }
 
+/*image width 90% b/c of unsolvable problem with sizing*/
 #bio .image img{
     margin-top: 20%;
     padding: 0;
@@ -116,13 +134,16 @@ header .current a{
     
 }
 
-/*Career- main*/
+
+
+/*careerPreview*/
 
 #careerPreview {
     padding: 2em 1em 1em;
     background-color: #fff;
 }
 
+/*puts each 'card' in carerPreview, allows them to wrap and to justify space-arround*/
 #careerPreview ul {
     list-style: none;
     margin: 0;
@@ -133,6 +154,7 @@ header .current a{
     justify-content: space-around;
 }
 
+/*min-width to stop impossibly small 'cards' when screen was squished*/
 #careerPreview li{
     margin-bottom: 1em;
     background: #fff;
@@ -164,6 +186,8 @@ header .current a{
     background: #0C39AB;
 }
 
+/*this is within careerPreview*/
+/*jump_button is the button that jumps to career.html*/
 .jump_button_div {
     width:100%;
     display: flex;
@@ -178,6 +202,8 @@ header .current a{
     padding: 5px 10px;    
 }
 
+/*connect*/
+
 #Connect {
     padding: 10px;
     background: #05226a;
@@ -188,23 +214,21 @@ header .current a{
     color: #fff;
 }
 
+/*places the images into a flex so that they can wrap when the screen shrinks*/
 #Connect .container{
-    /*margin: 0 20px;*/
     text-align: center;
     display: flex;
 }
+
 
 #Connect ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;    
     width: 100%;
     justify-content: center;
-    
-    
 }
 
 #connect li{
@@ -217,6 +241,10 @@ header .current a{
     height: 100px;
     
 }
+
+/*index.html end*/
+
+/*footer*/
 
 footer{
     margin: 0;
@@ -231,14 +259,20 @@ footer p{
     padding: 0;
 }
 
+/*footer end*/
 
-/*shop*/
 
+/*shop.html*/
+
+/*the sidebar and products and placed in a grid of 1:7*/
 #shop{    
     display: grid;
     grid-template-columns: 1fr 7fr; 
 }
 
+/*products*/
+
+/*each product in products is put into annother grid of 1:1:1*/
 #products{
     padding: 1em;    
     display: grid;
@@ -258,6 +292,8 @@ footer p{
     height: auto;
 }
 
+/*sidebar*/
+
 #sidebar {
     padding: 1em;
     border-right: #00664F 3px solid;
@@ -270,6 +306,7 @@ footer p{
     border-bottom: #fff 3px solid;
 }
 
+/*grid is used to make the price_range imputs 3x larger then the label*/
 #sidebar li, #sidebar #price_range{
     display: grid;
     grid-template-columns: 1fr 3fr ; 
@@ -279,6 +316,11 @@ footer p{
     margin-bottom: 4em;
 }
 
+/*shop.html end*/
+
+/*career.html*/
+
+/*the 'years' in timeline a are placed into two grid columns*/
 #timeline{
     display: grid;
     grid-template-columns: 1fr 1fr ; 
@@ -289,6 +331,7 @@ footer p{
     color: #fff;
 }
 
+/*current year of 20"twenty-two" is allowed to span both colums of the grid*/
 #timeline #twenty-two{
     grid-column: 1/3;    
     
@@ -305,6 +348,7 @@ footer p{
     border-radius: 2px;
 }
 
+/*25% margin makes the uderline of h3 smaller then the whole width of .year*/
 #timeline .year > h3{
     border-bottom: #fff 3px solid;
     font-weight: bold;
@@ -312,6 +356,7 @@ footer p{
     margin-right: 25%;
 }
 
+/*the dates within year are flexboxed*/
 #timeline .year .dates{
     display: flex;
     flex-wrap: wrap;
@@ -327,6 +372,7 @@ footer p{
     padding: 0 10px;
 }
 
+/*.nonbanner used to exclude 2-column wide content like #twenty-two*/
 #timeline .year .nonbanner{
     flex-basis: 40%; 
 }
@@ -336,7 +382,11 @@ footer p{
     height: auto;
 }
 
+/*career.html - end*/
 
+/*socialMedia.html*/
+
+/*grid places p and form side-by-side and wraps them if needed*/
 #contact{
     margin:0;
     border-bottom: 6px #00664f solid;
@@ -352,6 +402,7 @@ footer p{
     margin-top: 0;
 }
 
+/*each item in the form is in a 1 column grid so I can space them easier*/
 .form{
     display: grid;
     grid-template-columns: 1fr;
@@ -363,6 +414,7 @@ footer p{
     border-bottom: 1px #fff solid;
 }
 
+/*each articifal column in Career is flexed so that they can wrap when the screen shrinks*/
 #social{
     display: flex;
     flex-wrap: wrap;
@@ -390,19 +442,18 @@ footer p{
     
 }
 
-/*question: how would you wrap the <p>*/
-/*question: can I impose sizing onto my flexes: fixing image being masive*/
+/*socialMedia.html end*/
 
 @media(max-width: 750px){
     
-    header .container {
-        /*flex-wrap: wrap;*/
-        
+    /*the header flexes down placing the nav under the logo and putting A 20% magin to keep things off-centre*/
+    header .container {        
         flex-direction: column;
         justify-content: center;
         margin-left: 20%;
     }
     
+    /*each li in the header ul is placed underneath one annother*/
     header nav ul{
         display: flex;
         flex-direction: column;
@@ -412,34 +463,41 @@ footer p{
         padding: 0;
     }
     
+    /* the bio grid goes from two columns to 1 and the image is placed underneath*/
     #bio .container{
         grid-template-columns: 1fr;
     }
+
     #bio .image img{
-        margin-top: 0;
-        
+        margin-top: 0;        
     }
 
+    /*shop.html*/
+
+    /*sidebar and products in shop are turned from grid into block*/
     #shop{    
         display: block;
-        grid-template-columns: 1fr 7fr; 
     }
 
+    /*the shop's sidebar's border is moved from the right to the bottom*/
     #sidebar {
         border-right: hidden;
         border-bottom: #00664F 3px solid;
                
     }
 
+    /*the grid holding products goes from 3 columns to 1*/
     #products{        
         grid-template-columns: 1fr; 
         
     }
 
+    /*the years in timeline become display:block instead of grid*/
     #timeline{
         display: block;  
     }
 
+    /*the contact grid in socialMedia is turned from two columns into 1*/
     #contact{
         grid-template-columns: 1fr;
     }

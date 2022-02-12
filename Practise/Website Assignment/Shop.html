@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!--same header as index.html-->
     <header>
         <div class="container">
             <div id="branding">
@@ -18,15 +20,17 @@
                     <li ><a href="index.html">Home</a></li>
                     <li><a href="career.html">Career</a></li>
                     <li ><a href="socialMedia.html">Social Media</a></li>
-                    <li class="current"><a href="shop.html">Shop</a></li>
+                    <li class="current"><a href="Shop.html">Shop</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!--the #shop is the entire content of the page, specifically the #sidebar and the #products-->
     <section id="shop">
+        <!--sidebar containes filters for items on sale, they do not work-->
+        <!--allows filtering of product types, product collections and price range-->
         <div id="sidebar">
-
             <div class="sidebarItem">
                 <h4>Product Type</h4>
 
@@ -66,7 +70,7 @@
             <div class="sidebarItem">
                 <h4>Collection</h4>
 
-                <!--product types-->
+                <!--product collection-->
                 <ul>
                     <li>
                         <input type="checkbox" name="2022 - Mercedes" value="2022 - Mercedes">
@@ -94,6 +98,7 @@
             <div class="sidebarItem">
                 <h4>Price Range</h4>
                 
+                <!--product price range-->
                 <div id="price_range">                
                     <label for="min">Min:</label>
                     <input type="text" id="min" name="min">
@@ -105,6 +110,7 @@
             
         </div>
 
+        <!--each product contains a photo, description and price-->
         <div id="products">
             <div class="item">
                 <img src="https://cdn.shopify.com/s/files/1/0565/1742/7397/products/George_Russell_2021_Mini_Helmet_1_1284x.jpg?v=1632267288" alt="">
@@ -218,12 +224,10 @@
     </section>
 
       
-
+    <!--footer-->
     <footer>
         <p>George Russel F1 63, copyright &copy; 2022</p>
     </footer>
     
 </body>
 </html>
-
-<!--https://cdn.vox-cdn.com/thumbor/9B4o2ErxOapdmLA0CRoqC3XtMqE=/0x0:3000x2000/1200x800/filters:focal(1260x760:1740x1240)/cdn.vox-cdn.com/uploads/chorus_image/image/69783022/GeorgeRussell_Getty_Ringer.0.jpg-->
