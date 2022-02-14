@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Simple DOM example</title>
+   <style>
+      .highlight{
+         color: blue;
+         background-Color: green;
+         padding:10px;
+         width: 30%;
+         text-Align: center;
+      }
+
+      .more{
+         font-size: larger;
+      }
+   </style>
+</head>
+
+<body>
+   <section>
+      <img src="images/dinosaur.png"
+         alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+      <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+   </section>
+
+   <!-- This way the page is loaded before the script runs -->
+   <script>
+      const link = document.querySelector('a');//give me all but only the first element
+      link.textContent = 'Mozilla Developer Network';
+      link.href = 'https://developer.mozilla.com';
+
+      const sect = document.querySelector('section');
+      const para = document.createElement('p');
+      para.textContent = 'We hope you blah blah balh';
+      sect.appendChild(para);
+
+      const text = document.createTextNode('-- the primer soucre for web sdevelopment');
+      const linkPara = document.querySelector('p');
+      linkPara.appendChild(text);
+
+      sect.appendChild(linkPara);  //moves the paragraph - does not clone it
+
+      //sect.removeChild(linkPara);
+/*
+      para.style.color = 'blue';
+      para.style.backgroundColor = "green";
+      para.style.padding = '10px';
+      para.style.width = '30%';
+      para.style.textAlign = 'center';*/
+      
+      para.setAttribute('class', 'more') // adds the 'class': highlight
+      para.classList.add('highlight');//classList.add allows us to have multiple classes, unlike set attribute
+  </script>
+</body>
+
+</html>
