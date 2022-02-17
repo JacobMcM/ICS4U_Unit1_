@@ -40,6 +40,7 @@
         console.log(button);
 
         input.focus();
+        //button.addEventListener('click', addItem)
         button.onclick = function(){
             let listAdd = input.value;
 
@@ -65,7 +66,16 @@
             
         }
 
-              
+      const arr =[1,2,3,6];
+      /*we can assign up to three vars in forEach, 
+      the first (el) is for each elemnt in the array, 
+      the second (i) is the index of each element, 
+      the third (alias) is the value of the entire*/
+      arr.forEach((el,i, alias) => {
+         console.log('Element: ' + el);
+         console.log(i);
+         console.log(alias);
+      })
    </script>
 </body>
 
