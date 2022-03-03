@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Dynamic Table</title>
+   <style>
+      table {
+         border-collapse: collapse;
+      }
+
+      td,
+      th {
+         border: 1px solid #999;
+         padding: 0.5rem;
+         text-align: left;
+      }
+   </style>
+
+</head>
+
+<body>
+   <button id="clickme">Click me</button>
+   <input type="serach" name="search" id="search">
+   <div id="table">
+      <table id="datatable">
+         <thead>
+            <tr>
+               <th id="category">Name</th>
+               <th id="name">Category</th>
+               <th id="start">Start</th>
+               <th id="end">End</th>
+            </tr>
+         </thead>
+         <tbody></tbody>
+      </table>
+   </div>
+
+   <script src="dynamicTables.js"></script>
+</body>
+
+</html>
