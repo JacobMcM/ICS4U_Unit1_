@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Dynamic Table</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!--Header-->
+    <div class="header">
+        <div class="container">
+            <div class="branding">
+                <a href="scoresheet.html"><img class="logo" src="https://www.prochessleague.com/uploads/3/0/5/7/30579463/logobig2_orig.png"></a>
+            </div>
+
+            <h1 id="headerText">PRO CHESS LEAGUE</h1>
+
+            <ul class="nav">
+                <li class="current"><a href="scoresheet.html">scores</a></li>
+                <li><a href="games.html">games</a></li>
+            </ul>
+            
+        </div>
+    </div>
+
+    <!--Game submission form, updates both Games and Team scores-->
+    <div id="form">
+        <form action="">
+            <h1> Create Game: </h1>
+                <div class="form-content">
+                    <div class="structuredForm">
+                        <p>Home Team:</p>
+                        <select name="homeTeam" id="homeTeam"></select><!--populate with teams with javascript-->
+
+                        <p>Away Team:</p>
+                        <select name="awayTeam" id="awayTeam"></select>
+                    </div>
+
+                    <div class="structuredForm">
+                        <p>Points Scored by Home Team:</p>
+                        <input type="number" id="homePoints" name="homePoints" value="0" min="0" max="10">
+                        
+                        <p>Points Scored by Away Team:</p>
+                        <input type="number" id="awayPoints" name="awayPoints" value="0" min="0" max="10">
+                    </div>
+                    
+                    <div>
+                        <p>Home Team Result:</p>
+                        <input type="radio" id="win" name="result" value="win" selected>
+                        <label for="win">Win</label>
+                        <input type="radio" id="tie" name="result" value="tie">
+                        <label for="tie">Tie</label>
+                        <input type="radio" id="loss" name="result" value="loss">
+                        <label for="loss">Loss</label>
+                    </div>
+                    
+                    <div>
+                        <p>Date:</p>
+                        <input type="date" id="gameDate" name="date" min="2020-12-30">
+                    </div>
+                </div>
+            <input type="button" value="Submit" id="submitGame">
+        </form>
+    </div>
+
+    <!--table containing teams and their scores-->
+    <div id="table">
+        <table id="datatable">
+            <thead>
+                <tr>
+                    <th id="team">team</th>
+                    <th id="points">points</th>
+                    <th id="wins">W</th>
+                    <th id="loses">L</th>
+                    <th id="ties">T</th>
+                    <th id="country">Country</th>
+                    <th id="division">Division</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="masterSheet.js"></script>
+    <script src="scoreSheet.js"></script>
+</body>
+
+</html>
