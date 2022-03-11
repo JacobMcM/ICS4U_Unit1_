@@ -1,37 +1,43 @@
+//this page is the JavaScript for gamesPage.html
+
+//the intial values of Teams and Games, these will be malluable when filtering
 let teams;
 let games;
 
+//Checks if local storage will be empty. will only run once unless Local Storage is cleared
 if (!localStorage.getItem('games')) {
-    //console.log('poulating Storage')
     populateStorage();
 }
 
+//line 7
 function populateStorage() {
     localStorage.setItem('teams', JSON.stringify(masterTeamList));
     localStorage.setItem('games', JSON.stringify(masterGameList));
     localStorage.setItem('tableFilter', '');
     teams = JSON.parse(localStorage.getItem('teams'));
     games = JSON.parse(localStorage.getItem('games'));
+
+    //Transfers all of the scores obtained from Games and applys them to Teams
     populateGames();
 }
 
+//assuming Populate storage didnt run, assign 'games" and 'teams' with their initial values
 teams = JSON.parse(localStorage.getItem('teams'));
 games = JSON.parse(localStorage.getItem('games'));
 
-
-let isCategorySort = false;
-let categorySortDir = 'none';
-
+//used for pagination, the current page is initally set to 1
 let currPage = 1;
 
+//places the names of all of the "teams" into the "create Game" form
 populateForm();
 
+//pulls all of the games out of local strorage and creates the html for them
 createGamesHTML();
 
+//determines how many pages are needed and then creates the html for the pages
 definePages();
 
-//setup
-
+//line 20
 function populateGames() {
     games.forEach(r => {
         const homeTeam = r.homeTeam;
@@ -39,11 +45,14 @@ function populateGames() {
         const homePoints = r.homePoints;
         const awayPoints = r.awayPoints;
         const result = r.result;
+
+        
+        //used to add the values of a game to 'teams', used for both inital setup and whenever a new game is added
         addGameToScore(homeTeam, awayTeam, homePoints, awayPoints, result);
     })
-    //scoresheet should not need populate games after first run through. will be drawing from localStorage instead
 }
 
+//line 31
 function populateForm() {    
     teams.forEach(r => {
         const teamName = r.team;
@@ -67,6 +76,7 @@ function populateForm() {
     });   
 }
 
+//line 35
 function createGamesHTML(){
     const gameContainer = document.querySelector('#gameContainer');    
     
@@ -115,7 +125,6 @@ function createGamesHTML(){
         gameContent.appendChild(vs);
         gameContent.appendChild(away); 
 
-
         //homeName
         const homeName = document.createElement('h1');
         homeName.className = 'teamName';
@@ -155,6 +164,7 @@ function createGamesHTML(){
     });    
 }
 
+//line 37
 function definePages(){
     let numPages = Math.ceil(games.length/10);
 
@@ -179,25 +189,33 @@ function definePages(){
     
     buttons.forEach(
     page => {
-        //console.log('adding listener...');
+
+        //this is for each of the pagination buttons. they will call changeCurrPage() on click...
+        //... which changes the value of currPage and then filters games into a new page
         page.addEventListener('click', changeCurrPage);
     }
     );
 }
 
-//filter trigger values
+//these values will trigger filter, the controlling fuction for when the page needs to be updated
+
+//this is the search bar.
 const searchFilter = document.querySelector('#searchFilter');
 searchFilter.addEventListener('keyup', filter);
 
+//this is the "from" date
 const fromDateFilter = document.querySelector('#from');
 fromDateFilter.addEventListener('change', filter);
 
+//this is the to date
 const toDateFilter = document.querySelector('#to');
 toDateFilter.addEventListener('change', filter);
 
+//this is the button in the 'create game' form, calls submittedGame
 const submitButton = document.querySelector('#submitGame');
 submitButton.addEventListener('click', submittedGame);
 
+//will change Page and call filter. See line 193-194
 function changeCurrPage(page){
     let pageValue = parseInt(page.currentTarget.textContent);
     
@@ -209,36 +227,44 @@ function changeCurrPage(page){
     }
 }
 
+//this is called whenever something is updated for games. whenever someone searches, restricts by date, or changes pages, Filter is called
 filter();
 
-//filter
+//controlling filter. see line 230
 function filter(){
 
-    //console.log('filter, filter, filter away');
-    //all filtering/sorting/paging comes thorugh here and only then is CreateGames called
+    //checks if anything was written in the text box and filters games that match
     filterGamesByName();
 
+    //checks a date was set in the before and after datebox and filters games that match
     filterGamesByDate();
 
+    //takes all remaining games after being filtered and sorts them cronologically
     games = games.sort((a, b)=> {
         return dateToInt(a.gameDate) > dateToInt(b.gameDate) ? 1 : dateToInt(a.gameDate) === dateToInt(b.gameDate) ? 0 : -1;//? : turniary operator
     });
 
+    //checks the number of games left after filtering and creates an appropriate number of pages
     definePages();
 
+    //uses currentPage (currPage) to determine which 10 Games (or less) will be shown on that page
     changePage();    
 
+    //after all filtering and cutting is done, the final games are created on screen
     createGamesHTML();
 }
-//filter functions
+
+//line 236
 function filterGamesByName(){
     let val = searchFilter.value;
 
+    //this filter is the only one to assign Game as LocalStorage, essentially it resets Game from any previous filters
     games = JSON.parse(localStorage.getItem('games')).filter(game => {
         return game['homeTeam'].indexOf(val) >= 0 || game['awayTeam'].indexOf(val) >= 0
     });    
 }
 
+//line 239
 function filterGamesByDate(){
     let fromVal = fromDateFilter.value;
     let toVal = toDateFilter.value;
@@ -255,12 +281,15 @@ function filterGamesByDate(){
     }
 }
 
+//line 250
 function changePage(){
     let pageTo = (currPage*10)
     
     games = games.slice(pageTo-10, pageTo);
 }
 
+//this is called when a new game is added, it processes the form into usable data, pushes the new game into local storage, 
+//calls  addGameToScore() which will add the game's values to "teams", and finally makes the values within the form blank
 function submittedGame (){
     const homeTeam = document.querySelector('#homeTeam').value;
     const awayTeam = document.querySelector('#awayTeam').value;
@@ -293,7 +322,8 @@ function submittedGame (){
     document.querySelector('input[name$="result"]:checked').value = null;
 }
 
-function addGameToScore (homeTeam, awayTeam, homePoints, awayPoints, result){//this shouold be added to local storage not teams
+//used to add the values of a game to 'teams', used for both inital setup and whenever a new game is added
+function addGameToScore (homeTeam, awayTeam, homePoints, awayPoints, result){
     teams = JSON.parse(localStorage.getItem('teams'));
 
     teams.forEach(team => {
@@ -323,24 +353,23 @@ function addGameToScore (homeTeam, awayTeam, homePoints, awayPoints, result){//t
         }
     })
 
+    //pushes this new info into the Local Storage for teams
     localStorage.setItem('teams', JSON.stringify(teams));
 }
 
-/* add this back soon
-const submitButton = document.querySelector('#submitGame');
-
-submitButton.addEventListener('click', submittedGame);
-//-should I create separate JS's for separate pages
-*/
-
+//A utility fuction that takes the string date format (exp. 2022-03-17) and turns it into a int (exp. 20220317) so that it can be compared to other dates
 function dateToInt(date){
     let re = /-/gi;
 
     return parseInt(date.replace(re, ''));
 }
 
+//Called everytime page is booted up. line 370-372
 lookForPageHop();
 
+//if you click on a team name in scoreSheet.html, it will populate localStorage.getItem('tableFilter') with the name of the team that was clicked
+//so we know that if the local storage isnt empty then we know we were just sent from scoreSheet.html
+//so we filter the Games by the name of the team and then reset localStorage.getItem('tableFilter') to be ''
 function lookForPageHop() {
     if (localStorage.getItem('tableFilter') !== ''){
         let teamNameFilter = localStorage.getItem('tableFilter');

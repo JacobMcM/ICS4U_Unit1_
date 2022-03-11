@@ -1,3 +1,4 @@
+//the initial setup values of all of the teams
 const masterTeamList = [{
     team: "Saint Louis Arch Bishops",
     points: 0,
@@ -217,6 +218,7 @@ const masterTeamList = [{
 }
 ];
 
+//the initial baked-in values of all of the games
 const masterGameList = [{
     homeTeam: "Saint Louis Arch Bishops",
     awayTeam: "U.K. Lions",

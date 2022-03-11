@@ -1,60 +1,61 @@
+//this page is the JavaScript for scoreSheet.html
+
+//the intial values of Teams and Games, these will be malluable when filtering
 let teams;
 let games;
 
-isChangeable = 1;
-
+//Checks if local storage will be empty. will only run once unless Local Storage is cleared
 if (!localStorage.getItem('teams')) {
-    //console.log('poulating Storage')
     populateStorage();
 }
 
+//line 7
 function populateStorage() {
     localStorage.setItem('teams', JSON.stringify(masterTeamList));
     localStorage.setItem('games', JSON.stringify(masterGameList));
     localStorage.setItem('tableFilter', '');
     teams = JSON.parse(localStorage.getItem('teams'));
     games = JSON.parse(localStorage.getItem('games'));
+
+    //Transfers all of the scores obtained from Games and applys them to Teams
     populateGames();
 }
 
+//assuming Populate storage didnt run, assign "games" and "teams" with their initial values
 teams = JSON.parse(localStorage.getItem('teams'));
 games = JSON.parse(localStorage.getItem('games'));
-
 
 let isCategorySort = false;
 let categorySortDir = 'none';
 
+//places the names of all of the teams into the "create Game" form
 populateForm();
 
+//will build the html table of scores. also used to refresh table when new data is entered into "teams"
 createTable();
 
+//line 31
 function populateForm() {
-    if (document.querySelector('#homeTeam') !== null) {
-        teams.forEach(r => {
-            const teamName = r.team;
-            const homeTeam = document.querySelector('#homeTeam');
-            const awayTeam = document.querySelector('#awayTeam');
+    teams.forEach(r => {
+        const teamName = r.team;
+        const homeTeam = document.querySelector('#homeTeam');
+        const awayTeam = document.querySelector('#awayTeam');
             
-            const newOption = document.createElement('option');
-            const twoOption = document.createElement('option');
+        const newOption = document.createElement('option');
+        const twoOption = document.createElement('option');
 
+        newOption.value = teamName;
+        newOption.textContent = teamName;
 
-            newOption.value = teamName;
-            newOption.textContent = teamName;
-
-            twoOption.value = teamName;
-            twoOption.textContent = teamName;
-
-            
-            homeTeam.appendChild(newOption);
-            awayTeam.appendChild(twoOption);
-
-        });
-    }else{
-        console.log('form is NULL')
-    }
+        twoOption.value = teamName;
+        twoOption.textContent = teamName;
+           
+        homeTeam.appendChild(newOption);
+        awayTeam.appendChild(twoOption);
+    });
 }
 
+//line 20
 function populateGames() {
     games.forEach(r => {
         const homeTeam = r.homeTeam;
@@ -62,10 +63,13 @@ function populateGames() {
         const homePoints = r.homePoints;
         const awayPoints = r.awayPoints;
         const result = r.result;
+
+        //used to add the values of a game to 'teams', used for both inital setup and whenever a new game is added
         addGameToScore(homeTeam, awayTeam, homePoints, awayPoints, result);
     })
 }
 
+//line 34
 function createTable() {
     const tbody = document.querySelector('tbody');
     
@@ -87,11 +91,10 @@ function createTable() {
     });
 }   
 
-function sort (evt){//which columnItem is being changed
+//when a colmn is clicked it will call this to sort its contents from acending or decending
+function sort (evt){
     let sortField = evt.currentTarget.id;
-    console.log('setting ' + sortField);
-    //isCategorySort = true;
-
+    
     if (categorySortDir !== 'acs'){
         categorySortDir = 'acs';
         teams = JSON.parse(localStorage.getItem('teams')).sort((a,b) => {//dont pull from Masterlist /// IMPORTANT
@@ -103,12 +106,14 @@ function sort (evt){//which columnItem is being changed
         return (a[sortField] < b[sortField]) ? 1 : (a[sortField] === b[sortField]) ? 0 : -1});
         
     }
-        
-    //populateStorage();
+
+
     createTable();
 }
 
-function submittedGame (){///after this are we re-creating the table?
+//this is called when a new game is added, it processes the form into usable data, pushes the new game into local storage, 
+//calls  addGameToScore() which will add the game's values to "teams", and finally makes the values within the form blank
+function submittedGame (){
     const homeTeam = document.querySelector('#homeTeam').value;
     const awayTeam = document.querySelector('#awayTeam').value;
     const homePoints = document.querySelector('#homePoints').value;
@@ -128,18 +133,18 @@ function submittedGame (){///after this are we re-creating the table?
     games = JSON.parse(localStorage.getItem('games'));
     games.push(submitted);
     localStorage.setItem('games', JSON.stringify(games));
-    //filter();
     
     addGameToScore(homeTeam, awayTeam, parseInt(homePoints), parseInt(awayPoints), result);
-    
-    //document.getElementById('#homeTeam') = ;
+
     document.querySelector('#homeTeam').value = '';
     document.querySelector('#awayTeam').value = '';
     document.querySelector('#homePoints').value = 0;
     document.querySelector('#awayPoints').value = 0;
+    document.querySelector('#gameDate').value = null;
     document.querySelector('input[name$="result"]:checked').value = null;
 }
 
+//line 67
 function addGameToScore (homeTeam, awayTeam, homePoints, awayPoints, result){//this shouold be added to local storage not teams
     teams = JSON.parse(localStorage.getItem('teams'));
 
@@ -170,24 +175,27 @@ function addGameToScore (homeTeam, awayTeam, homePoints, awayPoints, result){//t
         }
     })
 
+    //pushes this new info into the Local Storage for teams
     localStorage.setItem('teams', JSON.stringify(teams));
 }
 
-
+//calls sort when a colm is called, see line 94
 document.querySelectorAll('th').forEach((th) => th.addEventListener('click', sort));
 
+//this is the button in the 'create game' form, calls submitted Game, see 114-115
 const submitButton = document.querySelector('#submitGame');
-
 submitButton.addEventListener('click', submittedGame);
 
+//this is every team name on the scoresheet. calls filterBySelectedTeam(). see line 197-198
 const teamHeaders = document.querySelectorAll('.teamHeader');
-
 teamHeaders.forEach(
     page => {
         page.addEventListener('click', filterBySelectedTeam)
     }
 );
 
+//takes the value of the team name clicked and puts it into local storage. then switches windows to gamePage.html
+//Gamepage will pull from local storage and sort games based on what was clicked
 function filterBySelectedTeam(evt) {
     let teamNameFilter = evt.currentTarget.textContent
 

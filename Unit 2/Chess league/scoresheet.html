@@ -10,11 +10,12 @@
 </head>
 
 <body>
+
+    <!--Header-->
     <div class="header">
         <div class="container">
             <div class="branding">
                 <a href="scoresheet.html"><img class="logo" src="https://www.prochessleague.com/uploads/3/0/5/7/30579463/logobig2_orig.png"></a>
-                
             </div>
 
             <h1 id="headerText">PRO CHESS LEAGUE</h1>
@@ -27,23 +28,24 @@
         </div>
     </div>
 
+    <!--Game submission form, updates both Games and Team scores-->
     <div id="form">
         <form action="">
-            <h1>Create Game</h1>
+            <h1> Create Game: </h1>
                 <div class="form-content">
                     <div class="structuredForm">
-                        <p>Home Team</p>
+                        <p>Home Team:</p>
                         <select name="homeTeam" id="homeTeam"></select><!--populate with teams with javascript-->
 
-                        <p>Away Team</p>
+                        <p>Away Team:</p>
                         <select name="awayTeam" id="awayTeam"></select>
                     </div>
 
                     <div class="structuredForm">
-                        <p>Points Scored by Home Team</p>
+                        <p>Points Scored by Home Team:</p>
                         <input type="number" id="homePoints" name="homePoints" value="0" min="0" max="10">
                         
-                        <p>Points Scored by Away Team</p>
+                        <p>Points Scored by Away Team:</p>
                         <input type="number" id="awayPoints" name="awayPoints" value="0" min="0" max="10">
                     </div>
                     
@@ -66,6 +68,7 @@
         </form>
     </div>
 
+    <!--table containing teams and their scores-->
     <div id="table">
         <table id="datatable">
             <thead>
@@ -84,8 +87,7 @@
     </div>
 
     <script src="masterSheet.js"></script>
-    <!--<script src="teams.js"></script>-->
-    <script src="main.js"></script>
+    <script src="scoreSheet.js"></script>
 </body>
 
 </html>
