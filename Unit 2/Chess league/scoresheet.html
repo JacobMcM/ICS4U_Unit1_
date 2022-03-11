@@ -16,16 +16,56 @@
                 <a href="scoresheet.html"><img class="logo" src="https://www.prochessleague.com/uploads/3/0/5/7/30579463/logobig2_orig.png"></a>
                 
             </div>
-            <!--<h1>PRO CHESS LEAGUE</h1>-->
+
+            <h1 id="headerText">PRO CHESS LEAGUE</h1>
 
             <ul class="nav">
                 <li class="current"><a href="scoresheet.html">scores</a></li>
                 <li><a href="games.html">games</a></li>
-                <li><a href="add.html">add</a></li>
             </ul>
             
         </div>
     </div>
+
+    <div id="form">
+        <form action="">
+            <h1>Create Game</h1>
+                <div class="form-content">
+                    <div class="structuredForm">
+                        <p>Home Team</p>
+                        <select name="homeTeam" id="homeTeam"></select><!--populate with teams with javascript-->
+
+                        <p>Away Team</p>
+                        <select name="awayTeam" id="awayTeam"></select>
+                    </div>
+
+                    <div class="structuredForm">
+                        <p>Points Scored by Home Team</p>
+                        <input type="number" id="homePoints" name="homePoints" value="0" min="0" max="10">
+                        
+                        <p>Points Scored by Away Team</p>
+                        <input type="number" id="awayPoints" name="awayPoints" value="0" min="0" max="10">
+                    </div>
+                    
+                    <div>
+                        <p>Home Team Result:</p>
+                        <input type="radio" id="win" name="result" value="win" selected>
+                        <label for="win">Win</label>
+                        <input type="radio" id="tie" name="result" value="tie">
+                        <label for="tie">Tie</label>
+                        <input type="radio" id="loss" name="result" value="loss">
+                        <label for="loss">Loss</label>
+                    </div>
+                    
+                    <div>
+                        <p>Date:</p>
+                        <input type="date" id="gameDate" name="date" min="2020-12-30">
+                    </div>
+                </div>
+            <input type="button" value="Submit" id="submitGame">
+        </form>
+    </div>
+
     <div id="table">
         <table id="datatable">
             <thead>
@@ -43,33 +83,8 @@
         </table>
     </div>
 
-    <div id="form">
-        <form action="">
-            <h1>Create Game</h1>
-            <label for="homeTeam">Home Team</label>
-            <select name="homeTeam" id="homeTeam"></select><!--populate with teams with javascript-->
-
-            <label for="awayTeam">Away Team</label>
-            <select name="awayTeam" id="awayTeam"></select>
-
-            <label for="homePoints">Points Scored by Home Team</label>
-            <input type="number" id="homePoints" name="homePoints" value="0" min="0" max="10">
-            
-            <label for="awayPoints">Points Scored by Away Team</label>
-            <input type="number" id="awayPoints" name="awayPoints" value="0" min="0" max="10">
-
-            <p>Home Team Result:</p>
-            <input type="radio" id="win" name="result" value="win">
-            <label for="win">Win</label>
-            <input type="radio" id="tie" name="result" value="tie">
-            <label for="tie">Tie</label>
-            <input type="radio" id="loss" name="result" value="loss">
-            <label for="loss">Loss</label>
-
-            <input type="button" value="Submit" id="submitGame">
-        </form>
-    </div>
-
+    <script src="masterSheet.js"></script>
+    <!--<script src="teams.js"></script>-->
     <script src="main.js"></script>
 </body>
 
